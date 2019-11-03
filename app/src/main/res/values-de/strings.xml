@@ -13,4 +13,7 @@
     <string name="thirdActBtn">Hex in Text umwandeln</string>
     <string name="xRadioBtn">\\x Hex</string>
     <string name="alertBtn">Erstellen Sie eine Warnbox</string>
+    <string name="incrementBtn">+</string>
+    <string name="DecrementBtn">-</string>
+    <string name="countTextView">0</string>
 </resources>

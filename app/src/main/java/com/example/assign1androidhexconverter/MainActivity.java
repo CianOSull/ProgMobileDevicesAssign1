@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -153,14 +152,15 @@ public class MainActivity extends AppCompatActivity {
         // This will create the channels
         createNotificaitonChannel();
 
-        Toast.makeText(MainActivity.this, "Calling Number", Toast.LENGTH_SHORT).show();
-        Intent callIntent = new Intent(this, MainActivity.class);
-        callIntent.setData(Uri.parse("tel:021-0000000"));
+        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+        callIntent.setData(Uri.parse("tel:0210000000"));
+        callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent phoneCallIntent = PendingIntent.getActivity(MainActivity.this,
-                0, callIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                0, callIntent, 0);
 
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this, CHANNEL_ID)
+                        //.setSmallIcon(R.drawable.ic_phone_notification)
                         .setSmallIcon(R.drawable.ic_phone_notification)
                         .setContentTitle("Make a call")
                         .setContentText("Tap the notification to call the phone.")

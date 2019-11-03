@@ -23,6 +23,7 @@
     <!-- This is the third activity text  -->
     <string name="hexEditText">Enter Hex to be converted</string>
     <string name="firstActReturnBtn">Convert to Text</string>
-
-
+    <string name="incrementBtn">+</string>
+    <string name="DecrementBtn">-</string>
+    <string name="countTextView">0</string>
 </resources>
