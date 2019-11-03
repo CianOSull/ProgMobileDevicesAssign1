@@ -18,23 +18,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
-/*
- There is three linear layouts on the activity main, one is vertical which is the whole screen
- and the other two are horizontal which is inbetween the button and edit text and inbetween the
- first horizontal and the vertical
-
- Layout of Activities:
- (Swithcing activities will use intents)
- Actvity 1 - MainActivity: Edit Text to enter in text, this text will be passed ot activity 2
- and wil be processed into hex. There will be a button below the edit text to go to activity 2 and
- below that will be a button or activity 3 and a textview of the result of activity 3
- Activity 2: Will pick a format to display the hex in and will be byte, /x or continous string
- Activity 3: This will take hex and convert it to text. There will be an edit text for the hex
- and you pick the format to put it in, maybe actually just use functions to remvoe spaces and /x.
- You will press a button to get back to activity one and the result will be displayed
-
- */
-
 public class MainActivity extends AppCompatActivity {
     private final String CHANNEL_ID = "Channel Main";
     private final int NOTIFICATION_ID = 1;
@@ -47,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         // Create the notification
         displayNotificaiton();
 
+        // This handles if an intent is sent to main activity
         if (getIntent().hasExtra("com.example.assign1androidhexconverter.textConversion")){
             TextView hexToTxtResultView = (TextView) findViewById(R.id.hexToTxtResultView);
             String hex = getIntent().getExtras().getString(
@@ -54,48 +38,51 @@ public class MainActivity extends AppCompatActivity {
             hexToTxtResultView.setText(hex);
         }
 
-       // Here I am initialising the components of the app
+        // Create second activity button
         Button secondActBtn = (Button) findViewById(R.id.secondActBtn);
 
         secondActBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // This creates the intent fo the second activity
                 Intent startIntent = new Intent(getApplicationContext(), secondActivity.class);
 
-                // This gets the text fro mthe edit text
+                // This gets the text from edit text
                 EditText textEditText = (EditText) findViewById(R.id.textEditText);
                 String textToHex = textEditText.getText().toString();
-                // this converts it to hex
+                // this converts the text hex using the methods below
                 String textConverted = convertToHex(textToHex);
 
-                // Use put Extra to change text fields in the other class
                 // This takes the text from the edit text and puts it into the next activity
                 startIntent.putExtra("com.example.assign1androidhexconverter.hexConversion",
                         textConverted);
+                // This starts the intent and moves hte user to the second acitivity
+                // Where the result is displayed
                 startActivity(startIntent);
             }
         });
 
+        // This handles the third activity
         Button thirdActBtn = (Button) findViewById(R.id.thirdActBtn);
         thirdActBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), thridActivity.class);
-                // Use put Extra to change text fields in the other class
                 //startIntent.putExtra("com.example.tutoral2.SOMETHING", "HELLO WORLD");
                 startActivity(startIntent);
             }
         });
     }
 
+    // This handles hte conversion text to hex
     private String convertToHex(String text){
-        //RadioButton byteRadioBtn = (RadioButton) findViewById(R.id.byteRadioBtn);
         RadioButton contRadioBtn = (RadioButton) findViewById(R.id.contRadioBtn);
         RadioButton xRadioBtn = (RadioButton) findViewById(R.id.xRadioBtn);
         RadioGroup radioGroupMain = (RadioGroup) findViewById(R.id.radioGroupMain);
         RadioButton rb = (RadioButton) findViewById(radioGroupMain.getCheckedRadioButtonId());
         String splitString;
 
+        // This decides which method to use depending on which radio button is selected
         if(rb == contRadioBtn){
             splitString = asciiToHex(text);
         }
@@ -148,16 +135,19 @@ public class MainActivity extends AppCompatActivity {
         return splitString;
     }
 
+    // This creates the notification that will be displayed
     private void displayNotificaiton(){
         // This will create the channels
         createNotificaitonChannel();
 
+        // Create the intent and pending intent
         Intent callIntent = new Intent(Intent.ACTION_DIAL);
         callIntent.setData(Uri.parse("tel:0210000000"));
         callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent phoneCallIntent = PendingIntent.getActivity(MainActivity.this,
                 0, callIntent, 0);
 
+        // Create hte notificaiton
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this, CHANNEL_ID)
                         //.setSmallIcon(R.drawable.ic_phone_notification)
@@ -171,11 +161,13 @@ public class MainActivity extends AppCompatActivity {
                         .setContentIntent(phoneCallIntent)
                         .setAutoCancel(true);
 
+        // Send it to the manager to be displayed
         NotificationManager notificationManager = (NotificationManager)
                 getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
 
+    // This creates the notification channel for androids above oreo
     private void createNotificaitonChannel(){
         if(Build.VERSION_CODES.O <= Build.VERSION.SDK_INT){
             String channelName = "Make a call";

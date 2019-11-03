@@ -22,10 +22,6 @@ public class secondActivity extends AppCompatActivity {
         returnToMainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent startIntent = new Intent(getApplicationContext(), MainActivity.class);
-//                // Use put Extra to change text fields in the other class
-//                //startIntent.putExtra("com.example.tutoral2.SOMETHING", "HELLO WORLD");
-//                startActivity(startIntent);
                 backToMainPage();
             }
         });

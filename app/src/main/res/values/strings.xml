@@ -1,25 +1,20 @@
 <resources>
     <string name="app_name">Hex\\Text Converter</string>
-
     <!-- This is the main activity text  -->
     <!-- This is the edit text and text view text  -->
     <string name="textToHex">Enter Text to convert to Hex</string>
     <string name="hexToTxtResultView">Hex to Text convert Result</string>
-
     <!-- This is radio buttons text  -->
     <string name="byteRadioBtn">Byte Hex</string>
     <string name="contRadioBtn">Continous Hex</string>
     <string name="xRadioBtn">\\x Hex</string>
-
     <!-- This is the buttons text  -->
     <string name="secondActBtn">Convert Text to Hex</string>
     <string name="thirdActBtn">Convert Hex to Text</string>
-
     <!-- This is the second activity text  -->
     <string name="hexToTxtTextView">Text Result</string>
     <string name="returnToMainBtn">Return to Main</string>
     <string name="alertBtn">Create an Alert Box</string>
-
     <!-- This is the third activity text  -->
     <string name="hexEditText">Enter Hex to be converted</string>
     <string name="firstActReturnBtn">Convert to Text</string>
