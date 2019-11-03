@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hex / Text-Konverter</string>
+    <string name="byteRadioBtn">Byte Hex</string>
+    <string name="contRadioBtn">Kontinuierliches Hex</string>
+    <string name="firstActReturnBtn">In Text konvertieren</string>
+    <string name="hexEditText">Hex eingeben, um konvertiert zu werden</string>
+    <string name="hexToTxtResultView">Hex zu Text konvertieren Ergebnis</string>
+    <string name="hexToTxtTextView">Text Ergebnis</string>
+    <string name="returnToMainBtn">Zurück zum hauptsächlichen</string>
+    <string name="secondActBtn">Text in Hex konvertieren</string>
+    <string name="textToHex">Geben Sie Text ein, der in Hex konvertiert werden soll</string>
+    <string name="thirdActBtn">Hex in Text umwandeln</string>
+    <string name="xRadioBtn">\\x Hex</string>
+    <string name="alertBtn">Erstellen Sie eine Warnbox</string>
+</resources>
